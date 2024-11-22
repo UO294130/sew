@@ -14,6 +14,8 @@
     <meta name = "keywords" content = "Formula 1, index"/>
     <!-- VENTANA GRAFICA-->
     <meta name = "viewport" content = "width=device-width, initial-scale=1.0"/>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="js/fondo.js"></script>
 	<!-- añadir el elemento link de enlace a la hoja de estilo dentro del <head> del documento html -->
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
@@ -38,11 +40,10 @@
     </header>
     
     <main>
-        <h2>Index</h2>
-        <p>En desarrollo</p>
+        <script>
+            var fondo = new Fondo("Austria", "Viena", "Red Bull Ring");
+            fondo.obtenerImagenDeFondo();
+        </script>      
     </main>
-    
-	<!-- la carpeta de recursos gráficos "images" debe estar en el misma carpeta del archivo -->
-<!-- anadir la sección footer dentro del body despues del párrafo -->
 </body>
 </html>
