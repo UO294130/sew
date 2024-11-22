@@ -38,11 +38,15 @@ class Fondo {
             $("body").css({
                 "background-image": "url(" + imageUrl + ")",
                 "background-size": "cover",
+                "background-position": "center center",
+                "background-repeat": "no-repeat",
                 "background-attachment": "fixed",
                 "height": "auto",
                 "min-height": "100vh",
-                "width": "auto",
-                "position": "relative"
+                "width": "100%",
+                "position": "relative",
+                "overflow" : "hidden"
+
             });
         } else {
             console.error("No se pudo obtener una URL de imagen válida.");
