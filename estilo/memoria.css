@@ -1,24 +1,19 @@
-/* Sergio Pérez Arias UO294130*/
-
 main > section {
-    display: flex;      
-    flex-direction: row;               
+    display: flex;                  
     flex-wrap: wrap;     
-    gap: 2em;
-    justify-content: center;             
-    align-items: flex-start; 
-    margin: 1em;                     
+    gap:1em;
+    justify-content: center;                              
 }
 
-main > section > article {        
+article {
+    display: flex;                    
     justify-content: center;      
     align-items: center;          
     height: 10em;  
-    width: calc(25% - gap);            
+    width: calc(25% - 2em);            
     background-color: lightgreen;       
     border: 0.2em solid lightgreen;          
-    border-radius: 5%;           
-    padding: 1em;                    
+    border-radius: 5%;                            
     cursor: pointer;   
     transform-style: preserve-3d; 
     transition: transform.5s;                  
@@ -28,8 +23,7 @@ main > section > article {
 main > section h3 {                      
     text-align: center;               
     margin-bottom: 1.2em;    
-    color: darkred;
-    background-color: lightgreen;   
+    color: darkred; 
     backface-visibility: hidden;        
 } 
 
@@ -49,17 +43,26 @@ main > section > article img {
 
 @media screen and (max-width: 465px) {
     main > section > article {
-        display: flex;               
-        flex-direction: column;       
-        justify-content: center;      
-        align-items: center;          
-        width: calc(40%);
-        height: 15em;                
-        margin: 0.5em;
-        background-color: lightgreen;       
+        display: flex;                    
+        justify-content: center;              
+        width: calc(50% - 2em);
+        height: 20vh;                  
         border: 0.1em solid lightgreen;          
-        border-radius: 0.4em;           
-        padding: 1em;                    
+        border-radius: 0.4em;                            
+        cursor: pointer;   
+        transform-style: preserve-3d; 
+        transition: transform.5s;                  
+    }
+}
+
+@media screen and (max-width: 799px) and (min-width:465px){
+    main > section > article {
+        display: flex;                    
+        justify-content: center;              
+        width: calc(33% - 2em);
+        height: 20vh;                    
+        border: 0.1em solid lightgreen;          
+        border-radius: 0.4em;                            
         cursor: pointer;   
         transform-style: preserve-3d; 
         transition: transform.5s;                  
