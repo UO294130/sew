@@ -15,11 +15,11 @@ class Pais{
         this.religion = religion;
 
         this.apikey = "b8ac529b6fb702be32b00fae513ec194";
-        this.ciudad = "Knittelfeld";
+        this.ciudad = "Knittelfeld, AT";
         this.tipo = "&mode=xml";
         this.unidades = "&units=metric";
         this.idioma = "&lang=es";
-        this.url = "api.openweathermap.org/data/2.5/forecast?q=" + this.ciudad + this.tipo + this.unidades + this.idioma + "&APPID=" + this.apikey;
+        this.url = "https://api.openweathermap.org/data/2.5/forecast?q=" + this.ciudad + "&mode=xml" + this.unidades + this.idioma + "&APPID=" + this.apikey;
         this.correcto = "¡Todo correcto! XML recibido de <a href='http://openweathermap.org/'>OpenWeatherMap</a>"
     }
 
@@ -44,103 +44,174 @@ class Pais{
     }
 
     escribirCoordenadas() {
-        document.write(this.coordenadasMeta);
+        document.write("<p>" + this.coordenadasMeta + "</p>");
     }
 
-    obternerTiempo(){
+    obtenerTiempo() {
+        const self = this; // Guardar referencia al objeto para usar dentro del callback
+    
         $.ajax({
             dataType: "xml",
-            url: this.url,
+            url: self.url,
             method: 'GET',
-            success: function(datos){
-                
-                    //Presentación del archivo XML en modo texto
-                    $("h5").text((new XMLSerializer()).serializeToString(datos));
-                
-                    //Extracción de los datos contenidos en el XML
-                    var totalNodos            = $('*',datos).length; // cuenta los elementos de XML: son los nodos del árbol DOM de XML
-                    var ciudad                = $('city',datos).attr("name");
-                    var longitud              = $('coord',datos).attr("lon");
-                    var latitud               = $('coord',datos).attr("lat");
-                    var pais                  = $('country',datos).text();
-                    var amanecer              = $('sun',datos).attr("rise");
-                    var minutosZonaHoraria    = new Date().getTimezoneOffset();
-                    var amanecerMiliSeg1970   = Date.parse(amanecer);
-                        amanecerMiliSeg1970  -= minutosZonaHoraria * 60 * 1000;
-                    var amanecerLocal         = (new Date(amanecerMiliSeg1970)).toLocaleTimeString("es-ES");
-                    var oscurecer             = $('sun',datos).attr("set");          
-                    var oscurecerMiliSeg1970  = Date.parse(oscurecer);
-                        oscurecerMiliSeg1970  -= minutosZonaHoraria * 60 * 1000;
-                    var oscurecerLocal        = (new Date(oscurecerMiliSeg1970)).toLocaleTimeString("es-ES");
-                    var temperatura           = $('temperature',datos).attr("value");
-                    var temperaturaMin        = $('temperature',datos).attr("min");
-                    var temperaturaMax        = $('temperature',datos).attr("max");
-                    var temperaturaUnit       = $('temperature',datos).attr("unit");
-                    var humedad               = $('humidity',datos).attr("value");
-                    var humedadUnit           = $('humidity',datos).attr("unit");
-                    var presion               = $('pressure',datos).attr("value");
-                    var presionUnit           = $('pressure',datos).attr("unit");
-                    var velocidadViento       = $('speed',datos).attr("value");
-                    var nombreViento          = $('speed',datos).attr("name");
-                    var direccionViento       = $('direction',datos).attr("value");
-                    var codigoViento          = $('direction',datos).attr("code");
-                    var nombreDireccionViento = $('direction',datos).attr("name");
-                    var nubosidad             = $('clouds',datos).attr("value");
-                    var nombreNubosidad       = $('clouds',datos).attr("name");
-                    var visibilidad           = $('visibility',datos).attr("value");
-                    var precipitacionValue    = $('precipitation',datos).attr("value");
-                    var precipitacionMode     = $('precipitation',datos).attr("mode");
-                    var descripcion           = $('weather',datos).attr("value");
-                    var horaMedida            = $('lastupdate',datos).attr("value");
-                    var horaMedidaMiliSeg1970 = Date.parse(horaMedida);
-                        horaMedidaMiliSeg1970 -= minutosZonaHoraria * 60 * 1000;
-                    var horaMedidaLocal       = (new Date(horaMedidaMiliSeg1970)).toLocaleTimeString("es-ES");
-                    var fechaMedidaLocal      = (new Date(horaMedidaMiliSeg1970)).toLocaleDateString("es-ES");
-                    
-                    var stringDatos =  "<ul><li>Número de elementos del XML: " + totalNodos + "</li>";
-                        stringDatos += "<li>Ciudad: " + ciudad + "</li>";
-                        stringDatos += "<li>Longitud: " + longitud + " grados</li>";
-                        stringDatos += "<li>Latitud: " + latitud + " grados</li>";
-                        stringDatos += "<li>País: " + pais + "</li>";
-                        stringDatos += "<li>Amanece a las: " + amanecerLocal + "</li>";
-                        stringDatos += "<li>Oscurece a las: " + oscurecerLocal + "</li>";
-                        stringDatos += "<li>Temperatura: " + temperatura + " grados Celsius</li>";
-                        stringDatos += "<li>Temperatura mínima: " + temperaturaMin + " grados Celsius</li>";
-                        stringDatos += "<li>Temperatura máxima: " + temperaturaMax + " grados Celsius</li>";
-                        stringDatos += "<li>Temperatura (unidades): " + temperaturaUnit + "</li>";
-                        stringDatos += "<li>Humedad: " + humedad + " " + humedadUnit + "</li>";
-                        stringDatos += "<li>Presión: " + presion + " " + presionUnit + "</li>";
-                        stringDatos += "<li>Velocidad del viento: " + velocidadViento + " metros/segundo</li>";
-                        stringDatos += "<li>Nombre del viento: " + nombreViento + "</li>";
-                        stringDatos += "<li>Dirección del viento: " + direccionViento + " grados</li>";
-                        stringDatos += "<li>Código del viento: " + codigoViento + "</li>";
-                        stringDatos += "<li>Nombre del viento: " + nombreDireccionViento + "</li>";
-                        stringDatos += "<li>Nubosidad: " + nubosidad + "</li>";
-                        stringDatos += "<li>Nombre nubosidad: " + nombreNubosidad + "</li>";
-                        stringDatos += "<li>Visibilidad: " + visibilidad + " metros</li>";
-                        stringDatos += "<li>Precipitación valor: " + precipitacionValue + "</li>";
-                        stringDatos += "<li>Precipitación modo: " + precipitacionMode + "</li>";
-                        stringDatos += "<li>Descripción: " + descripcion + "</li>";
-                        stringDatos += "<li>Hora de la medida: " + horaMedidaLocal + "</li>";
-                        stringDatos += "<li>Fecha de la medida: " + fechaMedidaLocal + "</li>";
-                    
-                    $("p").html(stringDatos);                  
-                },
-            error:function(){
-                $("h3").html("¡Tenemos problemas! No puedo obtener XML de <a href='http://openweathermap.org'>OpenWeatherMap</a>"); 
-                $("h4").remove();
-                $("h5").remove();
-                $("p").remove();
+            success: function (datos) {
+                const diasPrevision = $(datos).find("time"); // Obtener todas las entradas de tiempo
+                const diasAgrupados = {}; // Objeto para agrupar datos por fecha
+    
+                $("article").remove(); // Limpiar artículos existentes en la página
+    
+                // Agrupar datos por día
+                diasPrevision.each(function () {
+                    const fechaCompleta = $(this).attr("from").split("T");
+                    const fecha = fechaCompleta[0]; // Extraer solo la fecha
+    
+                    const temperatura = parseFloat($(this).find("temperature").attr("value"));
+                    const humedad = parseFloat($(this).find("humidity").attr("value"));
+                    const precipitacion = parseFloat($(this).find("precipitation").attr("value") || 0);
+                    const icono = $(this).find("symbol").attr("var"); // Código del ícono
+                    const descripcion = $(this).find("symbol").attr("name"); // Descripción del clima
+    
+                    if (!diasAgrupados[fecha]) {
+                        diasAgrupados[fecha] = {
+                            temperaturas: [],
+                            humedades: [],
+                            precipitaciones: [],
+                            iconos: {},
+                            descripciones: {}
+                        };
+                    }
+    
+                    diasAgrupados[fecha].temperaturas.push(temperatura);
+                    diasAgrupados[fecha].humedades.push(humedad);
+                    diasAgrupados[fecha].precipitaciones.push(precipitacion);
+    
+                    // Contar íconos y descripciones para determinar los más frecuentes
+                    if (!diasAgrupados[fecha].iconos[icono]) {
+                        diasAgrupados[fecha].iconos[icono] = 0;
+                    }
+                    diasAgrupados[fecha].iconos[icono]++;
+    
+                    if (!diasAgrupados[fecha].descripciones[descripcion]) {
+                        diasAgrupados[fecha].descripciones[descripcion] = 0;
+                    }
+                    diasAgrupados[fecha].descripciones[descripcion]++;
+                });
+    
+                // Procesar y mostrar datos agrupados
+                for (let fecha in diasAgrupados) {
+                    const datosDia = diasAgrupados[fecha];
+                    const temperaturas = datosDia.temperaturas;
+                    const humedades = datosDia.humedades;
+                    const precipitaciones = datosDia.precipitaciones;
+    
+                    // Calcular valores
+                    const temperaturaMin = Math.min(...temperaturas);
+                    const temperaturaMax = Math.max(...temperaturas);
+                    const humedadPromedio = (humedades.reduce((a, b) => a + b, 0) / humedades.length).toFixed(1);
+                    const precipitacionPromedio = (precipitaciones.reduce((a, b) => a + b, 0) / precipitaciones.length).toFixed(1);
+    
+                    const mensajePrecipitacion = precipitacionPromedio > 0
+                        ? `Precipitación: ${precipitacionPromedio} mm`
+                        : "Precipitación: No disponible";
+    
+                    // Determinar ícono y descripción más frecuentes
+                    const iconoMasFrecuente = Object.keys(datosDia.iconos).reduce((a, b) =>
+                        datosDia.iconos[a] > datosDia.iconos[b] ? a : b
+                    );
+    
+                    const descripcionMasFrecuente = Object.keys(datosDia.descripciones).reduce((a, b) =>
+                        datosDia.descripciones[a] > datosDia.descripciones[b] ? a : b
+                    );
+    
+                    // Crear artículo
+                    const article = $("<article>")
+                        .append(
+                            $("<h3>").text(`Fecha: ${fecha}`),
+                            $("<p>").text(`Temperatura máxima: ${temperaturaMax}°C`),
+                            $("<p>").text(`Temperatura mínima: ${temperaturaMin}°C`),
+                            $("<p>").text(`Humedad promedio: ${humedadPromedio}%`),
+                            $("<p>").text(mensajePrecipitacion),
+                            $("<p>").text(`Clima: ${descripcionMasFrecuente}`),
+                            $("<img>")
+                                .attr("src", `https://openweathermap.org/img/wn/${iconoMasFrecuente}.png`)
+                                .attr("alt", `Clima: ${descripcionMasFrecuente}`)
+                        );
+    
+                    $("main").append(article); // Agregar el artículo al elemento <main>
                 }
+            },
+            error: function () {
+                $("main").append("<article><p>Error al obtener los datos de OpenWeatherMap</p></article>");
+            }
         });
     }
     
-    crearElemento(tipoElemento, texto, insertarAntesDe){
-        // Crea un nuevo elemento modificando el árbol DOM
-        // El elemnto creado es de 'tipoElemento' con un 'texto' 
-        // El elemnto se coloca antes del elemnto 'insertarAntesDe'
-        var elemento = document.createElement(tipoElemento); 
-        elemento.innerHTML = texto;
-        $(insertarAntesDe).before(elemento);
-    }
+
+    // obtenerTiempo() {
+    //     const self = this; // Guardar referencia al objeto para usar dentro del callback
+    
+    //     $.ajax({
+    //         dataType: "xml",
+    //         url: self.url,
+    //         method: 'GET',
+    //         success: function (datos) {
+    //             const diasPrevision = $(datos).find("time"); // Obtener todas las entradas de tiempo
+    //             const diasAgrupados = {}; // Objeto para agrupar datos por fecha a las 12:00h
+    
+    //             $("article").remove(); // Limpiar artículos existentes en la página
+    
+    //             // Filtrar y agrupar datos por día para las 12:00h
+    //             diasPrevision.each(function () {
+    //                 const fechaCompleta = $(this).attr("from"); // Ejemplo: "2024-11-26T12:00:00"
+    //                 const [fecha, hora] = fechaCompleta.split("T"); // Separar la fecha y la hora
+    
+    //                 if (hora.startsWith("12:00")) { // Solo considerar las entradas a las 12:00h
+    //                     const temperatura = parseFloat($(this).find("temperature").attr("value"));
+    //                     const humedad = parseFloat($(this).find("humidity").attr("value"));
+    //                     const precipitacion = parseFloat($(this).find("precipitation").attr("value") || 0);
+    //                     const icono = $(this).find("symbol").attr("var"); // Código del ícono
+    //                     const descripcion = $(this).find("symbol").attr("name"); // Descripción del clima
+    
+    //                     // Guardar los datos agrupados por fecha
+    //                     diasAgrupados[fecha] = {
+    //                         temperatura,
+    //                         humedad,
+    //                         precipitacion,
+    //                         icono,
+    //                         descripcion
+    //                     };
+    //                 }
+    //             });
+    
+    //             // Mostrar datos por día
+    //             for (let fecha in diasAgrupados) {
+    //                 const datosDia = diasAgrupados[fecha];
+    
+    //                 // Crear artículo
+    //                 const article = $("<article>")
+    //                     .append(
+    //                         $("<h4>").text(`Fecha: ${fecha}`),
+    //                         $("<p>").text(`Temperatura: ${datosDia.temperatura}°C`),
+    //                         $("<p>").text(`Humedad: ${datosDia.humedad}%`),
+    //                         $("<p>").text(`Precipitación: ${datosDia.precipitacion > 0 ? `${datosDia.precipitacion} mm` : "No disponible"}`),
+    //                         $("<p>").text(`Clima: ${datosDia.descripcion}`),
+    //                         $("<img>")
+    //                             .attr("src", `https://openweathermap.org/img/wn/${datosDia.icono}.png`)
+    //                             .attr("alt", `Clima: ${datosDia.descripcion}`)
+    //                     );
+    
+    //                 $("main").append(article); // Agregar el artículo al elemento <main>
+    //             }
+    //         },
+    //         error: function () {
+    //             $("main").append("<article><p>Error al obtener los datos de OpenWeatherMap</p></article>");
+    //         }
+    //     });
+    // }
+    
+    
+    
+
+    
+
 }

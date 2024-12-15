@@ -1,17 +1,25 @@
-/* Sergio Pérez Arias UO294130*/
-
 main {
     display: grid;      
-    grid-template-columns: repeat(4, 1fr);    
+    grid-template-columns: repeat(2, 1fr);    
     gap: 2em;
     margin: 0 auto;
     align-items: center;  
     justify-items: center; 
 }
 
+
+main button {
+    justify-self: center;
+    grid-column: span 2; 
+    padding: 0.6em 1.2em;
+    font-size: 1.5em;
+    color: black;
+    background-color: lightgreen;
+    cursor: pointer;
+}
+
 main > article {
-    background-color: lightgreen; 
-    border: 0.2em solid;  
+    background: lightgreen;
     border: 0.2em solid white;
     height: auto;
     padding: 1em;
@@ -21,34 +29,29 @@ main > article {
     justify-content: center;
 }
 
-main p{
-    grid-column: span 4; 
-}
-
 main > article h3 {
-    font-size: 1em;
-    margin-bottom: 0.5em;
-    background-color: lightgreen;
+    margin: 0em 0em 0.5em;
+    font-size: 1.2em;
+    color: yellow;
+    background-color: darkblue;
     padding: 0.5em;
     text-align: center;
 }
 
-main > ul{
-    grid-column: span 4; 
-}
-
 main > article p {
-    font-size: 0.8em;
-    margin: 0.3em 0;
+    margin: 0.3em 0em;
+    font-size: 0.9em;
     line-height: 1.4;
-    background-color: lightgreen;
+    background-color: darkblue;
+    color: yellow;
     padding: 0.5em;
 }
 
-main > article img {
-    width: em; 
-    height: 5em;
-    margin-top: 0.5em;
+#map {
+    height: 400px; /* Ajusta la altura como lo necesites */
+    width: 100%;
+    margin-top: 20px;
+    background-color: #f0f0f0;
 }
 
 @media screen and (max-width: 799px) {

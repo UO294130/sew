@@ -14,14 +14,16 @@
     <meta name = "keywords" content = "Formula 1, viajes"/>
     <!-- VENTANA GRAFICA-->
     <meta name = "viewport" content = "width=device-width, initial-scale=1.0"/>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="js/viajes.js"> </script>
 	<!-- añadir el elemento link de enlace a la hoja de estilo dentro del <head> del documento html -->
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
 
 </head>
 
+
 <body>
-    <!-- Datos con el contenidos que aparece en el navegador -->
     <header>
         <h1>
             <a href = "index.html" title = "Enlace a inicio"> F1 Desktop</a>
@@ -42,9 +44,23 @@
     <p>
         <a href="index.html" title ="Enlace a inicio"> Estás es: Inicio >> Viajes </a>
     </p>
+    
     <main>
         <h2>Viajes</h2>
-        <p>En desarrollo </p>
-	</main>
+            <script>
+               var viajes = new Viajes();
+               viajes.getMapaEstaticoGoogle();
+            </script>
+        <div>
+            <script async defer  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC6j4mF6blrc4kZ54S6vYZ2_FpMY9VzyRU&callback=initMap"></script>
+        </div>
+    </main> 
+ 
+
+    
+    
 </body>
 </html>
+
+
+

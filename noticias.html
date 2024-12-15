@@ -14,10 +14,12 @@
     <meta name = "keywords" content = "Formula 1, noticias"/>
     <!-- VENTANA GRAFICA-->
     <meta name = "viewport" content = "width=device-width, initial-scale=1.0"/>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src = "js/noticias.js"></script>
 	<!-- añadir el elemento link de enlace a la hoja de estilo dentro del <head> del documento html -->
     <link rel="stylesheet" type="text/css" href="estilo/estilo.css" />
     <link rel="stylesheet" type="text/css" href="estilo/layout.css" />
-
+    <link rel="stylesheet" type="text/css" href="estilo/article_elements.css" /> 
 </head>
 
 <body>
@@ -41,11 +43,29 @@
 
     <p>
         <a href="index.html" title ="Enlace a inicio"> Estás es: Inicio >> Noticias </a>
+       
     </p>
 
     <main>
         <h2>Noticias</h2>
-    <p>En desarrollo</p>
+        <!-- <script>
+                var noticia = new Noticia();
+        </script> -->
+        <p>Seleccione un archivo de texto: </p>
+        <input type="file" id="archivoTexto" onchange="noticia.readInputFile(this.files)" />
+       
+    
+        <h3>Añadir una nueva noticia</h3>
+        
+            <label for="nuevoTitular">Titular:</label>
+            <input type="text" id="nuevoTitular" placeholder="Escribe el titular" required />
+           
+            <label for="nuevoCuerpo">Cuerpo:</label>
+            <textarea id="nuevoCuerpo" placeholder="Escribe el cuerpo de la noticia" required></textarea>
+          
+            <label for="nuevoAutor">Autor:</label>
+            <input type="text" id="nuevoAutor" placeholder="Escribe el nombre del autor" required />
+        
     </main>
  
 </body>

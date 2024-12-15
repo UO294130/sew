@@ -1,3 +1,4 @@
+/* Sergio Pérez Arias UO294130*/
 
 main > section {
     display: flex;      
@@ -9,8 +10,7 @@ main > section {
     margin: 1em;                     
 }
 
-main > section > article {
-    display: flex;                    
+main > section > article {        
     justify-content: center;      
     align-items: center;          
     height: 10em;  

@@ -5,7 +5,6 @@
 
 header{
     background-color: lightgreen;
-    color: black;
 }
 
 h1 a{
@@ -26,7 +25,6 @@ h1{
 
 /*Especificidad 001*/
 h2{
-    background-color: black;
     color: yellow;
     font-family:Arial, "Helvetica Neue" ,Helvetica,sans-serif; 
     font-size: 3em;
@@ -34,7 +32,6 @@ h2{
 
 /*Especificidad 001*/
 h3{
-    background-color: black;
     color: yellow;
     font-family:Arial, "Helvetica Neue" ,Helvetica,sans-serif;  
     font-size: 1.5em;
@@ -42,22 +39,19 @@ h3{
 
 /*Especificidad 001*/
 h4{
-    background-color: black;
     color: yellow;
     font-family:Arial, "Helvetica Neue",Helvetica,sans-serif; 
     font-size: 1em;
 }
 
 h5{
-    background-color: black;
     color: yellow;
     font-family:Arial, "Helvetica Neue",Helvetica,sans-serif; 
     font-size: 0.8em;
 }
 
 /*Especificidad 012*/
-p a:first-of-type{ 
-    background-color: black;
+body > p a:first-of-type{ 
     color: #ACFF47;
 	font-family:Arial,"Helvetica Neue" ,Helvetica,sans-serif; 
     font-size: 1em;
@@ -66,15 +60,14 @@ p a:first-of-type{
 
 /*Especificidad 001*/
 p{ 
-    background-color: black;
     color: white;
 	font-family:Arial,"Helvetica Neue" ,Helvetica,sans-serif; 
     font-size: 0.8em;
 }
 
-nav a.active{
-    color: black;
-    text-decoration: none;
+nav > a.active{
+    font-weight: bold;
+    text-decoration: underline;
 
 }
 
@@ -104,7 +97,6 @@ nav a{
     color: #000485;
     font-family: Arial,"Helvetica Neue" ,Helvetica,sans-serif;
     font-size: 1em;
-    font-weight: bold;
     text-decoration: none;
     
 }
@@ -120,7 +112,6 @@ a{
 
 /*Especificidad 002*/
 ul li{
-    background-color: black;
     color: white;
     font-family: Arial,"Helvetica Neue" ,Helvetica,sans-serif;
     list-style-type: "\1F449";
@@ -131,7 +122,6 @@ ul li{
 
 /*Especificidad 002*/
 ol li{
-    background-color: black;
     color: white;
     font-family: Arial,"Helvetica Neue" ,Helvetica,sans-serif;
     list-style-type: "\1f3c1";
@@ -140,7 +130,6 @@ ol li{
 
 /*Especificidad 002*/
 ul ol li{
-    background-color: black;
     color: white;
     font-family: Arial,"Helvetica Neue" ,Helvetica,sans-serif;
     list-style-type: "\1f3c6";
@@ -149,7 +138,6 @@ ul ol li{
 
 /*Especificidad 002*/
 dl dt {
-    background-color: black;
     color: #ACFF47;
     font-family: Arial,"Helvetica Neue" ,Helvetica,sans-serif;
     font-size: 0.9em;
@@ -164,14 +152,12 @@ tr,td,th{
 }
 
 tr:first-child{
-    background-color: black;
     color: yellow;
     font-family: Arial,"Helvetica Neue" ,Helvetica,sans-serif;
     font-size: 1em;
 }
   
 tr th:first-of-type{
-    background-color: black;
     color: yellow;
     font-family: Arial,"Helvetica Neue" ,Helvetica,sans-serif;
     font-size: 1em;
@@ -181,7 +167,6 @@ tr th:first-of-type{
 
 /*Especificidad 001*/
 caption{
-    background-color: black;
     color: yellow;
 }
 
@@ -190,8 +175,27 @@ body{
     background-color: black;
     color: white;
     font-family:Arial,"Helvetica Neue" ,Helvetica,sans-serif; 
-    font-size: 1.2em;
 }
+
+video {
+    width: 90%;
+    max-width: 10em ;
+    height: auto;
+}
+
+main > img {
+    width: 100%;
+    height:50vw; 
+    
+}
+
+main > div{
+    width:50%; 
+    height:50vw; 
+    top: 8em;
+    align-items: center;
+}
+    
 
 @media screen and (max-width: 465px) {
     p a:first-of-type {
